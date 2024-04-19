@@ -1,0 +1,28 @@
+<header class="todolist__header">
+    <span>My To Do List</span>
+  </header>
+  
+  <input
+    class="todolist__input"
+    [(ngModel)]="inputTodo"
+    (keyup.enter)="addtodo(inputTodo)"
+  />
+
+  <select id="select" #filtering  (change)="onFilter($event)">
+    <option value="all">All</option>
+    <option value="pending">Pending</option>
+    <option value="completed">Completed</option>
+  </select>
+
+  <ul id="todolist__container">
+    <li *ngFor="let todo of todoStore.filteredTodos() ">
+        <span [ngClass]="{'completed': todo.completed}" (click)="onToggle(todo.id, todo.completed)"> {{todo.title}}</span>
+            <button 
+            class="delete_btn" 
+            id="${todoitem.id}" 
+            (click)="deletetodo(todo.id)"
+            >X</button>
+    </li>
+  </ul>
+
+
